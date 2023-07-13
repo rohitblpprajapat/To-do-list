@@ -14,7 +14,8 @@ body {
   
   h1 {
     text-align: center;
-    color: #333;
+    color: #4caf50;
+    font-size: xx-large;
   }
   
   /* Task input and button */
@@ -47,10 +48,11 @@ body {
   li {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     background-color: #fff;
     padding: 10px;
     margin-bottom: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.24);
     border-radius: 10px;
   }
   
@@ -60,10 +62,14 @@ body {
   
   input[type="checkbox"] {
     margin-right: 10px;
+    text-align: center;
+    justify-content: center;
+    border-radius: 20px;
   }
   
   label {
     flex-grow: 1;
+    justify-content: center;
   }
   
   button.delete-button {
@@ -74,5 +80,22 @@ body {
     padding: 5px 10px;
     margin-left: 10px;
     border-radius: 20px;
+  }  
+  
+  #todo-input{
+    align-items: center;
+    justify-content: center;
+
+    height:38px ;
+    border-radius: 20px;
+  }
+
+  #todo-form{
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    border: #070505;
+    margin-left: 200px;
+    width: max-content;
   }
   

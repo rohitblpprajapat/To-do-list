@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Todo List</title>
-  <link rel="stylesheet" href="style.css" type="text/css">
-  <style>
-    .completed {
-      text-decoration: line-through;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Todo List</h1>
-  <input type="text" id="task" placeholder="Enter task">
-  <button onclick="submittask()">Add Task</button>
-  <ul id="taskList"></ul>
+  <div class="container">
+    <h1>Todo List</h1>
+    <form id="todo-form">
+      <input type="text" id="todo-input" placeholder="Enter a task">
+      <button type="submit">Add</button>
+    </form>
+    <ul id="todo-list"></ul>
+  </div>
 
   <script src="assign.js"></script>
+   
 </body>
 </html>

@@ -1,61 +1,73 @@
-// Get the task input element and task list element
-var taskInput = document.getElementById("task");
-var taskList = document.getElementById("taskList");
+// JavaScript code for the todo list
+const todoForm = document.getElementById('todo-form');
+const todoInput = document.getElementById('todo-input');
+const todoList = document.getElementById('todo-list');
 
-// Function to handle task submission
-function submittask() {
-  var task = taskInput.value.trim();
+// Load saved todos from local storage
+const savedTodos = JSON.parse(localStorage.getItem('todos')) || [];
 
-  if (task !== "") {
-    // Create a new list item element
-    var li = document.createElement("li");
+// Render todos from local storage
+function renderTodos() {
+  todoList.innerHTML = '';
+  savedTodos.forEach(todo => {
+    const todoItem = document.createElement('li');
+    todoItem.className = 'todo-item';
+    todoItem.innerHTML = `
+      <input type="checkbox" ${todo.completed ? 'checked' : ''}>
+      <span class="todo-text">${todo.text}</span>
+      <button class="delete-button">Delete</button>
+    `;
+    todoList.appendChild(todoItem);
+  });
+}
 
-    // Create a checkbox element
-    var checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.addEventListener("change", completeTask);
-
-    // Create a label element for the task text
-    var label = document.createElement("label");
-    label.textContent = task;
-
-    // Create a button element for deleting the task
-    var deleteButton = document.createElement("button");
-    deleteButton.textContent = "Delete";
-    deleteButton.addEventListener("click", deleteTask);
-
-    // Append checkbox, label, and delete button to the list item
-    li.appendChild(checkbox);
-    li.appendChild(label);
-    li.appendChild(deleteButton);
-
-    // Append the list item to the task list
-    taskList.appendChild(li);
-
-    // Clear the task input
-    taskInput.value = "";
+// Add a new todo
+function addTodo() {
+  const todoText = todoInput.value.trim();
+  if (todoText !== '') {
+    const newTodo = {
+      text: todoText,
+      completed: false
+    };
+    savedTodos.push(newTodo);
+    localStorage.setItem('todos', JSON.stringify(savedTodos));
+    renderTodos();
+    todoInput.value = '';
   }
 }
 
-// Function to handle task completion
-function completeTask(event) {
-  var checkbox = event.target;
-  var listItem = checkbox.parentNode;
+// Delete a todo
+function deleteTodo(index) {
+  savedTodos.splice(index, 1);
+  localStorage.setItem('todos', JSON.stringify(savedTodos));
+  renderTodos();
+}
 
-  if (checkbox.checked) {
-    // Add a class to the list item to mark it as completed
-    listItem.classList.add("completed");
-  } else {
-    // Remove the class if the checkbox is unchecked
-    listItem.classList.remove("completed");
+// Toggle todo completion
+function toggleTodoCompletion(index) {
+  savedTodos[index].completed = !savedTodos[index].completed;
+  localStorage.setItem('todos', JSON.stringify(savedTodos));
+  completed: true
+  renderTodos();
+}
+
+// Event listeners
+todoForm.addEventListener('submit', e => {
+  e.preventDefault();
+  addTodo();
+});
+
+todoList.addEventListener('click', e => {
+  if (e.target.matches('.delete-button')) {
+    const todoItem = e.target.closest('.todo-item');
+    const index = Array.from(todoList.children).indexOf(todoItem);
+    deleteTodo(index);
+  } else if (e.target.matches('input[type="checkbox"]')) {
+    const todoItem = e.target.closest('.todo-item');
+    const index = Array.from(todoList.children).indexOf(todoItem);
+    toggleTodoCompletion(index);
   }
-}
+});
 
-// Function to handle task deletion
-function deleteTask(event) {
-  var deleteButton = event.target;
-  var listItem = deleteButton.parentNode;
-
-  // Remove the list item from the task list
-  taskList.removeChild(listItem);
-}
+// Initial render
+renderTodos();
