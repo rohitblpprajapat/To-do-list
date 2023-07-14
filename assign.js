@@ -12,11 +12,15 @@ function renderTodos() {
   savedTodos.forEach(todo => {
     const todoItem = document.createElement('li');
     todoItem.className = 'todo-item';
+    
     todoItem.innerHTML = `
       <input type="checkbox" ${todo.completed ? 'checked' : ''}>
       <span class="todo-text">${todo.text}</span>
       <button class="delete-button">Delete</button>
     `;
+    if (todo.completed){
+      todoItem.classList.add('completed')
+    }
     todoList.appendChild(todoItem);
   });
 }
@@ -47,9 +51,12 @@ function deleteTodo(index) {
 function toggleTodoCompletion(index) {
   savedTodos[index].completed = !savedTodos[index].completed;
   localStorage.setItem('todos', JSON.stringify(savedTodos));
-  completed: true
+  
+  
   renderTodos();
 }
+
+
 
 // Event listeners
 todoForm.addEventListener('submit', e => {
@@ -69,5 +76,7 @@ todoList.addEventListener('click', e => {
   }
 });
 
+var dt = new Date();
+document.getElementById("datetime").innerText = dt;
 // Initial render
 renderTodos();

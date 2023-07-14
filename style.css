@@ -1,9 +1,9 @@
 /* Global styles */
 body {
     font-family: Arial, sans-serif;
-    background-image: url("background.jpg");
+    background-image: url(chimene-gaspar-VQnKZ6S0p3k-unsplash.jpg);
     background-size: cover;
-    margin: 0;
+    margin-left: 800px;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -14,8 +14,10 @@ body {
   
   h1 {
     text-align: center;
-    color: #4caf50;
-    font-size: xx-large;
+    color: #23c7b9;
+    font-size: 50px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.24);
+    
   }
   
   /* Task input and button */
@@ -29,11 +31,14 @@ body {
   button {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #4caf50;
+    background-color: #f5f852;
     color: #fff;
     border: none;
     cursor: pointer;
     border-radius: 20px;
+    width: 100px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.24);
+
   }
   
   /* Task list */
@@ -52,12 +57,15 @@ body {
     background-color: #fff;
     padding: 10px;
     margin-bottom: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.24);
     border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.24);
+
   }
   
   .completed {
     opacity: 0.7;
+    text-decoration: line-through;
+    animation: fadeIn 0.5s;
   }
   
   input[type="checkbox"] {
@@ -65,6 +73,8 @@ body {
     text-align: center;
     justify-content: center;
     border-radius: 20px;
+    margin-left: 100px;
+    border-color: #4caf50;
   }
   
   label {
@@ -73,7 +83,7 @@ body {
   }
   
   button.delete-button {
-    background-color: #ff5252;
+    background-color: #94f8ca;
     color: #fff;
     border: none;
     cursor: pointer;
@@ -84,10 +94,14 @@ body {
   
   #todo-input{
     align-items: center;
+    text-align: center;
     justify-content: center;
-
+    border-color: #f2ff40;
+    margin-left: 35px;
     height:38px ;
+    width: 500px;
     border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   }
 
   #todo-form{
@@ -95,7 +109,12 @@ body {
     align-items: center;
     justify-content: center;
     border: #070505;
-    margin-left: 200px;
-    width: max-content;
+    margin-left: 0px;
   }
-  
+  ::placeholder{
+    text-align: center;
+  }
+
+  #datetime{
+    text-align: center  ;
+  }
